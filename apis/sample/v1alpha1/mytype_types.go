@@ -1,5 +1,5 @@
 /*
-Copyright 2022 The Crossplane Authors.
+Copyright 2020 The Crossplane Authors.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -25,62 +25,63 @@ import (
 	xpv1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
-// cnaParameters are the configurable fields of a cna.
-type cnaParameters struct {
+// MyTypeParameters are the configurable fields of a MyType.
+type MyTypeParameters struct {
 	ConfigurableField string `json:"configurableField"`
 }
 
-// cnaObservation are the observable fields of a cna.
-type cnaObservation struct {
-	ObservableField string `json:"observableField,omitempty"`
+// MyTypeObservation are the observable fields of a MyType.
+type MyTypeObservation struct {
+	ConfigurableField string `json:"configurableField"`
+	ObservableField   string `json:"observableField,omitempty"`
 }
 
-// A cnaSpec defines the desired state of a cna.
-type cnaSpec struct {
+// A MyTypeSpec defines the desired state of a MyType.
+type MyTypeSpec struct {
 	xpv1.ResourceSpec `json:",inline"`
-	ForProvider       cnaParameters `json:"forProvider"`
+	ForProvider       MyTypeParameters `json:"forProvider"`
 }
 
-// A cnaStatus represents the observed state of a cna.
-type cnaStatus struct {
+// A MyTypeStatus represents the observed state of a MyType.
+type MyTypeStatus struct {
 	xpv1.ResourceStatus `json:",inline"`
-	AtProvider          cnaObservation `json:"atProvider,omitempty"`
+	AtProvider          MyTypeObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// A cna is an example API type.
+// A MyType is an example API type.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
 // +kubebuilder:subresource:status
-// +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,nokiacontainerservices}
-type cna struct {
+// +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,template}
+type MyType struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 
-	Spec   cnaSpec   `json:"spec"`
-	Status cnaStatus `json:"status,omitempty"`
+	Spec   MyTypeSpec   `json:"spec"`
+	Status MyTypeStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// cnaList contains a list of cna
-type cnaList struct {
+// MyTypeList contains a list of MyType
+type MyTypeList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []cna `json:"items"`
+	Items           []MyType `json:"items"`
 }
 
-// cna type metadata.
+// MyType type metadata.
 var (
-	cnaKind             = reflect.TypeOf(cna{}).Name()
-	cnaGroupKind        = schema.GroupKind{Group: Group, Kind: cnaKind}.String()
-	cnaKindAPIVersion   = cnaKind + "." + SchemeGroupVersion.String()
-	cnaGroupVersionKind = SchemeGroupVersion.WithKind(cnaKind)
+	MyTypeKind             = reflect.TypeOf(MyType{}).Name()
+	MyTypeGroupKind        = schema.GroupKind{Group: Group, Kind: MyTypeKind}.String()
+	MyTypeKindAPIVersion   = MyTypeKind + "." + SchemeGroupVersion.String()
+	MyTypeGroupVersionKind = SchemeGroupVersion.WithKind(MyTypeKind)
 )
 
 func init() {
-	SchemeBuilder.Register(&cna{}, &cnaList{})
+	SchemeBuilder.Register(&MyType{}, &MyTypeList{})
 }

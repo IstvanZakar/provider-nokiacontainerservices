@@ -5,9 +5,9 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.11.3
   creationTimestamp: null
-  name: storeconfigs.nokiacontainerservices.crossplane.io
+  name: storeconfigs.template.crossplane.io
 spec:
-  group: nokiacontainerservices.crossplane.io
+  group: template.crossplane.io
   names:
     categories:
     - crossplane

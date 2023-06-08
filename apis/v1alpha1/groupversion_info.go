@@ -14,9 +14,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-// Package v1alpha1 contains the core resources of the NokiaContainerServices provider.
+// Package v1alpha1 contains the core resources of the Template provider.
 // +kubebuilder:object:generate=true
-// +groupName=nokiacontainerservices.crossplane.io
+// +groupName=template.crossplane.io
 // +versionName=v1alpha1
 package v1alpha1
 
@@ -27,7 +27,7 @@ import (
 
 // Package type metadata.
 const (
-	Group   = "nokiacontainerservices.crossplane.io"
+	Group   = "template.crossplane.io"
 	Version = "v1alpha1"
 )
 

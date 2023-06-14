@@ -14,21 +14,23 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-// Package apis contains Kubernetes API for the Template provider.
+// Package apis contains Kubernetes API for the NokiaContainerServices provider.
 package apis
 
 import (
 	"k8s.io/apimachinery/pkg/runtime"
 
-	samplev1alpha1 "github.com/crossplane/provider-template/apis/sample/v1alpha1"
-	templatev1alpha1 "github.com/crossplane/provider-template/apis/v1alpha1"
+	clusterv1alpha1 "github.com/IstvanZakar/provider-nokiacontainerservices/apis/cluster/v1alpha1"
+	infrav1alpha1 "github.com/IstvanZakar/provider-nokiacontainerservices/apis/infra/v1alpha1"
+	nokiacontainerservicesv1alpha1 "github.com/IstvanZakar/provider-nokiacontainerservices/apis/v1alpha1"
 )
 
 func init() {
 	// Register the types with the Scheme so the components can map objects to GroupVersionKinds and back
 	AddToSchemes = append(AddToSchemes,
-		templatev1alpha1.SchemeBuilder.AddToScheme,
-		samplev1alpha1.SchemeBuilder.AddToScheme,
+		nokiacontainerservicesv1alpha1.SchemeBuilder.AddToScheme,
+		clusterv1alpha1.SchemeBuilder.AddToScheme,
+		infrav1alpha1.SchemeBuilder.AddToScheme,
 	)
 }
 

@@ -1,4 +1,4 @@
-module github.com/crossplane/provider-template
+module github.com/IstvanZakar/provider-nokiacontainerservices
 
 go 1.19
 
